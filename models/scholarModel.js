@@ -103,9 +103,6 @@ const ScholarSchema = new mongoose.Schema(
       },
       // Add more social media profiles as needed
     },
-    photo: {
-      type: String,
-    },
   },
   { timestamps: true }
 );

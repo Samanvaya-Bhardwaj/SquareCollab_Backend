@@ -6,13 +6,14 @@ import {
   forgotPasswordController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
+import { upload } from "../middlewares/multer.js";
 
 //router object
 const router = express.Router();
 
 //routing
 //REGISTER || METHOD POST
-router.post("/register", registerController);
+router.post("/register",upload.single('photo'),registerController);
 
 //LOGIN || POST
 router.post("/login", loginController);

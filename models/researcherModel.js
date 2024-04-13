@@ -16,9 +16,9 @@ const ResearcherSchema = new mongoose.Schema({
   },
   contact: {
     email: {
-      type: String, 
-      require: true, 
-      unique:true,
+      type: String,
+      require: true,
+      unique: true,
     },
     phone: {
       type: String,
@@ -129,13 +129,10 @@ const ResearcherSchema = new mongoose.Schema({
       type: String,
     },
   },
-  photo: {
-    type: String,
-  },
 },
-{
-  timestamps: true,
-}
+  {
+    timestamps: true,
+  }
 );
 
 export default mongoose.model("Researcher", ResearcherSchema);

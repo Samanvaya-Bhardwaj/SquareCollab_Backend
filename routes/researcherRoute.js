@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAllData, createData, getDataById, updateData, deleteData, updateResearcherProfileController } from '../controllers/researcherController.js';
-import { requireSignIn }  from '../middlewares/authmiddleware.js'
+import { requireSignIn }  from "../middlewares/authmiddleware.js"
 
 const router = express.Router();
 

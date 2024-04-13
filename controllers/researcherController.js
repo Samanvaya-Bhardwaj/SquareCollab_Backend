@@ -13,14 +13,14 @@ export const getAllData = async (req, res) => {
 
 
 //Create a new data 
-export const createData = async (req,res) => {
-  try{
-      const createData = await researchers.create(req.body);
-      res.status(201).send(createData);
-      console.log("Body",createData);
+export const createData = async (req, res) => {
+  try {
+    const createData = await researchers.create(req.body);
+    res.status(201).send(createData);
+    console.log("Body", createData);
 
-  }catch(err){
-      res.status(500).send({message : "Error in creating the data " , error: err.message});
+  } catch (err) {
+    res.status(500).send({ message: "Error in creating the data ", error: err.message });
   }
 }
 
@@ -41,9 +41,9 @@ export const getDataById = async (req, res) => {
 //update researcher detail by using id
 export const updateData = async (req, res) => {
   try {
-    const data = await researchers.findByIdAndUpdate(req.params.id ,req.body , {new : true});
-    if(!data){
-      return res.status(404).send({message :'researcher not found with this id ' + req.params.id});
+    const data = await researchers.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!data) {
+      return res.status(404).send({ message: 'researcher not found with this id ' + req.params.id });
     }
     res.json(data);
   } catch (error) {
@@ -76,7 +76,7 @@ export const updateResearcherProfileController = async (req, res) => {
       name,
       affiliation,
       title,
-      contact,  
+      contact,
       researchInterests,
       education,
       publications,

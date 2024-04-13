@@ -8,14 +8,14 @@ import authRoutes from "./routes/authRoute.js";
 import researcherRoutes from "./routes/researcherRoute.js";
 import scholarRoutes from "./routes/scholarRoute.js";
 import researchers from "../backend/models/researcherModel.js";
-
-
 import fs from 'fs';
 
 
 // import cors from 'cors';
 
-dotenv.config();
+dotenv.config({
+    path: './env'
+});
 
 // database connection
 connectDB();

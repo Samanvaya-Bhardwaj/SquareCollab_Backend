@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import uploadOnCloudinary from "../utils/cloudinary.js";
 
 export const registerController = async (req, res) => {
   try {
@@ -33,8 +34,23 @@ export const registerController = async (req, res) => {
         message: "Already Register please login",
       });
     }
+    //get image path from multer in localdisk
+    const photoLocalPath = req.file?.photo[0]?.path;
+    //check for photo
+    if(!photoLocalPath){
+        res.status(400).send({message : "Photo file is required"});
+    }
+    //upload to cloudinary
+    const photo = await uploadOnCloudinary(photoLocalPath);
+
+    //again chek for photo
+    if(!photo){
+      res.status(400).send({message : "Photo file is not uploaded"});
+    }
+
     //register user
     const hashedPassword = await hashPassword(password);
+
     //save
     const user = await new userModel({
       name,
@@ -42,6 +58,7 @@ export const registerController = async (req, res) => {
       phone,
       address,
       password: hashedPassword,
+      photo: photo.url,
       answer,
     }).save();
 
