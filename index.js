@@ -9,9 +9,7 @@ import researcherRoutes from "./routes/researcherRoute.js";
 import scholarRoutes from "./routes/scholarRoute.js";
 import researchers from "../backend/models/researcherModel.js";
 import fs from 'fs';
-
-
-// import cors from 'cors';
+import cors from 'cors';
 
 dotenv.config({
     path: './env'
@@ -32,13 +30,21 @@ const data = JSON.parse(jsonData);
 // .then(()=>console.log('Data inserted successfully'))
 // .catch((err)=>console.error('Error in inserting data', err));
 
-// middleware
+//define cors origin
+const corsOptions = {
+    origin: 'http://localhost:3000', // Allow requests only from this origin
+    methods: ['GET', 'POST'], // Allow only specified HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow additional headers
+  };
 
-// app.use(cors());
+
+
+// middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 
 // routes
 

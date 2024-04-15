@@ -26,33 +26,33 @@ export const registerController = async (req, res) => {
       return res.send({ message: "Answer is Required" });
     }
     //check user
-    const exisitingUser = await userModel.findOne({ email });
-    //exisiting user
-    if (exisitingUser) {
+    const existingUser = await userModel.findOne({ email });
+    //existing user
+    if (existingUser) {
       return res.status(200).send({
         success: false,
-        message: "Already Register please login",
+        message: "Already registered, please login",
       });
     }
-    //get image path from multer in localdisk
-    const photoLocalPath = req.file?.photo[0]?.path;
+    //get image path from multer in local disk
+    const photoLocalPath = req.file?.path;
     //check for photo
-    if(!photoLocalPath){
-        res.status(400).send({message : "Photo file is required"});
+    if (!photoLocalPath) {
+      return res.status(400).send({ message: "Photo file is required" });
     }
+    
     //upload to cloudinary
     const photo = await uploadOnCloudinary(photoLocalPath);
-
-    //again chek for photo
-    if(!photo){
-      res.status(400).send({message : "Photo file is not uploaded"});
+    
+    //check for photo upload
+    if (!photo) {
+      return res.status(400).send({ message: "Photo file was not uploaded" });
     }
-
     //register user
     const hashedPassword = await hashPassword(password);
 
     //save
-    const user = await new userModel({
+    const user = await userModel.create({
       name,
       email,
       phone,
@@ -60,18 +60,18 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
       photo: photo.url,
       answer,
-    }).save();
+    });
 
     res.status(201).send({
       success: true,
-      message: "User Register Successfully",
+      message: "User Registered Successfully",
       user,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Errro in Registeration",
+      message: "Error in Registration",
       error,
     });
   }
