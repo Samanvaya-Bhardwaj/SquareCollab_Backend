@@ -3,8 +3,11 @@ import { requireSignIn }  from '../middlewares/authmiddleware.js'
 import { updateScholarProfileController } from '../controllers/scholarController.js'
 const router = express.Router();
 
-
-
+// router.get("/",getAllData);
+// router.post("/",createData);
+// router.get("/:id",getDataById);
+// router.put("/:id",updateData);
+// router.delete("/:id",deleteData);
 
 
 
