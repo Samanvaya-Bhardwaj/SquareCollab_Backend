@@ -49,7 +49,7 @@ app.use(express.urlencoded({extended:true}));
 // routes
 
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/researchers',researcherRoutes);
+app.use('/api/v1/researchers',researcherRoutes);
 app.use('/api/v1/scholars',scholarRoutes);
 
 // api

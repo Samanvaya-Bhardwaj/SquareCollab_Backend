@@ -69,6 +69,31 @@ export const deleteData = async (req, res) => {
 };
 
 
+//search Researcher controller
+export const searchResearcherController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await researchers
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { affiliation: { $regex: keyword, $options: "i" } },
+          { researchInterests: { $regex: keyword, $options: "i" } },
+          { "publications.title": { $regex: keyword, $options: "i" } },
+          { "researchProjects.title": { $regex: keyword, $options: "i" } },
+        ],
+      })
+    res.json(results);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error In Search Product API",
+      error,
+    });
+  }
+};
+
 
 export const updateResearcherProfileController = async (req, res) => {
   try {

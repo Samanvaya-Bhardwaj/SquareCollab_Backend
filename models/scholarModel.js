@@ -107,5 +107,5 @@ const ScholarSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Scholars", ScholarSchema);
+export default mongoose.model("Scholar", ScholarSchema);
   
