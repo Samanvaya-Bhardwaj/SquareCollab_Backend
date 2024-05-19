@@ -12,6 +12,9 @@ router.delete("/:id",deleteData);
 
 
 
+
+
+
 router.put("/researcherprofile", requireSignIn, updateScholarProfileController);
 
 export default router;
