@@ -5,7 +5,7 @@ import {
   testController,
   forgotPasswordController,
 } from "../controllers/authController.js";
-import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
+import { isAdmin,requireSignIn } from "../middlewares/authMiddleware.js";
 import { upload } from "../middlewares/multer.js";
 
 //router object
@@ -25,7 +25,7 @@ router.post("/forgot-password", forgotPasswordController);
 router.get("/test", requireSignIn, isAdmin, testController);
 
 //protected route auth
-router.get("/user-auth", requireSignIn, (req, res) => {
+router.get("/user-auth", requireSignIn,(req, res) => {
   res.status(200).send({ ok: true });
 });
 

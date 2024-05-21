@@ -1,5 +1,5 @@
 import express from 'express';
-import { requireSignIn }  from '../middlewares/authmiddleware.js'
+import { isScholar, requireSignIn }  from '../middlewares/authmiddleware.js'
 import { getAllData, createData, getDataById, updateData, deleteData, updateScholarProfileController, searchScholarController } from '../controllers/scholarController.js'
 const router = express.Router();
 
@@ -15,6 +15,6 @@ router.delete("/:id",deleteData);
 
 
 
-router.put("/researcherprofile", requireSignIn, updateScholarProfileController);
+router.put("/scholarprofile", requireSignIn, isScholar, updateScholarProfileController);
 
 export default router;

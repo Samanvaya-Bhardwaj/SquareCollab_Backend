@@ -5,10 +5,13 @@ import uploadOnCloudinary from "../utils/cloudinary.js";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address, answer } = req.body;
+    const { name, role, email, password, phone, address, answer } = req.body;
     //validations
     if (!name) {
       return res.send({ error: "Name is Required" });
+    }
+    if (!role) {
+      return res.send({error: "Role is Required"});
     }
     if (!email) {
       return res.send({ message: "Email is Required" });
@@ -54,6 +57,7 @@ export const registerController = async (req, res) => {
     //save
     const user = await userModel.create({
       name,
+      role,
       email,
       phone,
       address,
@@ -113,6 +117,7 @@ export const loginController = async (req, res) => {
       user: {
         _id: user._id,
         name: user.name,
+        role: user.role,
         email: user.email,
         phone: user.phone,
         adddress: user.address,
