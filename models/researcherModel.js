@@ -28,7 +28,7 @@ const ResearcherSchema = new mongoose.Schema({
       type: String,
     },
   },
-  researchInterests: {
+  researchInterests: {  
     type: [String],
     required: true,
   },

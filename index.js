@@ -7,7 +7,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import researcherRoutes from "./routes/researcherRoute.js";
 import scholarRoutes from "./routes/scholarRoute.js";
-import researchers from "../backend/models/researcherModel.js";
+// import researchers from "../backend/models/researcherModel.js";
 import fs from 'fs';
 import cors from 'cors';
 
