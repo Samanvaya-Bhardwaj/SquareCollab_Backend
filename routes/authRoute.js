@@ -5,7 +5,7 @@ import {
   testController,
   forgotPasswordController,
 } from "../controllers/authController.js";
-import { isAdmin,requireSignIn } from "../middlewares/authMiddleware.js";
+import { isAdmin,requireSignIn } from "../middlewares/authmiddleware.js";
 import { upload } from "../middlewares/multer.js";
 
 //router object
