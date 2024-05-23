@@ -18,11 +18,16 @@ export const createBlogController = async (req, res) => {
         return res.status(400).send({ error: "Author is Required" });
     }
 
-    const blog = new blogModel({ ...req.fields, slug: slugify(title) });
+    const blog = new blogModel({
+      ...req.fields,
+      slug: slugify(title),
+    });
+
     if (image) {
       blog.image.data = fs.readFileSync(image.path);
       blog.image.contentType = image.type;
     }
+
     await blog.save();
     res.status(201).send({
       success: true,
@@ -30,7 +35,7 @@ export const createBlogController = async (req, res) => {
       blog,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({
       success: false,
       error,
