@@ -2,11 +2,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import colors from "colors";
 import dotenv from "dotenv";
-import morgan from "morgan";
+// import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import researcherRoutes from "./routes/researcherRoute.js";
 import scholarRoutes from "./routes/scholarRoute.js";
+import blogRoutes from "./routes/blogRoute.js";
 // import researchers from "../backend/models/researcherModel.js";
 import fs from 'fs';
 import cors from 'cors';
@@ -42,7 +43,7 @@ const corsOptions = {
 // middleware
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}));
 
@@ -51,6 +52,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/researchers',researcherRoutes);
 app.use('/api/v1/scholars',scholarRoutes);
+app.use("/api/v1/blog", blogRoutes);
 
 //chatengine post controller 
 app.post("/authenticate", async (req, res) => {
