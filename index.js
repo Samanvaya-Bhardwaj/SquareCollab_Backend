@@ -34,7 +34,7 @@ const data = JSON.parse(jsonData);
 //define cors origin
 const corsOptions = {
     origin: 'http://localhost:3000', // Allow requests only from this origin
-    methods: ['GET', 'POST'], // Allow only specified HTTP methods
+    methods: ['GET', 'POST','PUT','DELETE'], // Allow only specified HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow additional headers
   };
 

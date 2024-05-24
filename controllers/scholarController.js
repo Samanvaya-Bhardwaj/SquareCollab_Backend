@@ -39,7 +39,7 @@ export const getDataById = async (req, res) => {
   }
 };
 
-//update Scholarr detail by using id
+//update Scholar detail by using id
 export const updateData = async (req, res) => {
   try {
     const data = await Scholar.findByIdAndUpdate(req.params.id, req.body, { new: true });
